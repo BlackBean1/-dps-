@@ -1,0 +1,658 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>中保防災科技 | 鋰電池防災專家</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--o:#E85D04;--od:#C44B00;--ob:rgba(232,93,4,0.12);--bk:#141414;--d1:#1e1e1e;--d2:#262626;--d3:#2e2e2e;--tx:#F0EDE8;--mu:#9a9a9a}
+html{scroll-behavior:smooth}
+body{background:var(--bk);color:var(--tx);font-family:'Helvetica Neue',Arial,'PingFang TC','Microsoft JhengHei',sans-serif;overflow-x:hidden}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:200;padding:0 6%}
+nav::before{content:'';position:absolute;inset:0;background:rgba(20,20,20,0.92);backdrop-filter:blur(20px);border-bottom:1px solid rgba(232,93,4,0.15)}
+.ni{max-width:1100px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;height:68px;position:relative}
+.logo{display:flex;align-items:center;gap:12px;text-decoration:none}
+.li{width:42px;height:42px;border-radius:8px;border:1.5px solid var(--o);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:900;color:var(--o);line-height:1.1;text-align:center}
+.lt{font-size:15px;font-weight:700;color:var(--tx)}
+.ls{font-size:11px;color:var(--mu)}
+nav ul{list-style:none;display:flex;gap:28px;align-items:center}
+nav a{color:var(--mu);text-decoration:none;font-size:13px;transition:color .2s}
+nav a:hover{color:var(--tx)}
+.nc{background:var(--o);color:#fff!important;padding:10px 22px;border-radius:6px;font-weight:700}
+.nc:hover{background:var(--od)!important}
+
+/* HERO */
+.hero{min-height:100vh;display:flex;align-items:center;padding:100px 6% 60px;position:relative;overflow:hidden}
+.hbg{position:absolute;inset:0;pointer-events:none}
+.hbg-orb1{position:absolute;top:-10%;right:-5%;width:700px;height:700px;border-radius:50%;background:radial-gradient(circle,rgba(232,93,4,0.15),transparent 65%)}
+.hbg-orb2{position:absolute;bottom:-20%;left:-10%;width:500px;height:500px;border-radius:50%;background:radial-gradient(circle,rgba(232,93,4,0.06),transparent 65%)}
+.hbg-line{position:absolute;inset:0;background:repeating-linear-gradient(90deg,transparent,transparent 79px,rgba(232,93,4,0.03) 80px)}
+.hi{max-width:1100px;margin:0 auto;position:relative;z-index:1;display:grid;grid-template-columns:1.1fr 0.9fr;gap:80px;align-items:center}
+.hbadge{display:inline-flex;align-items:center;gap:10px;border:1px solid rgba(232,93,4,0.4);border-radius:100px;padding:7px 18px 7px 10px;font-size:12px;color:var(--o);margin-bottom:28px;font-weight:600;background:rgba(232,93,4,0.06)}
+.hdot{width:8px;height:8px;border-radius:50%;background:var(--o);animation:blink 1.8s infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.3}}
+h1{font-size:clamp(38px,5vw,60px);font-weight:900;line-height:1.05;letter-spacing:-0.03em;margin-bottom:10px}
+.h1-sub{font-size:clamp(38px,5vw,60px);font-weight:900;line-height:1.05;letter-spacing:-0.03em;-webkit-text-stroke:1.5px rgba(240,237,232,0.2);color:transparent;margin-bottom:24px}
+.ho{color:var(--o)}
+.hdesc{font-size:16px;color:var(--mu);margin-bottom:40px;line-height:1.8;max-width:460px}
+.hbtns{display:flex;gap:12px;flex-wrap:wrap}
+.bp{background:var(--o);color:#fff;padding:15px 32px;border-radius:8px;font-size:15px;font-weight:800;text-decoration:none;display:inline-flex;align-items:center;gap:10px;transition:all .2s}
+.bp:hover{background:var(--od);transform:translateY(-2px);box-shadow:0 12px 32px rgba(232,93,4,0.4)}
+.bs{border:1.5px solid rgba(240,237,232,0.15);color:var(--tx);padding:15px 32px;border-radius:8px;font-size:15px;font-weight:700;text-decoration:none;display:inline-flex;align-items:center;gap:10px;transition:all .2s}
+.bs:hover{border-color:var(--o);color:var(--o);transform:translateY(-2px)}
+
+/* HERO CARD */
+.hv-main{background:var(--d1);border:1px solid rgba(232,93,4,0.2);border-radius:20px;padding:28px;position:relative;overflow:hidden}
+.hv-glow{position:absolute;top:-60px;right:-60px;width:200px;height:200px;background:radial-gradient(circle,rgba(232,93,4,0.2),transparent 70%);pointer-events:none}
+.hv-label{font-size:10px;font-weight:700;color:var(--o);letter-spacing:.12em;text-transform:uppercase;margin-bottom:16px;display:flex;align-items:center;gap:8px}
+.hv-label::before{content:'';flex:1;height:1px;background:rgba(232,93,4,0.3)}
+.hv-big{text-align:center;padding:16px 0}
+.hv-num{font-size:64px;font-weight:900;color:var(--o);line-height:1;letter-spacing:-3px}
+.hv-unit{font-size:16px;font-weight:700;color:var(--o);opacity:.7}
+.hv-desc{font-size:13px;color:var(--mu);text-align:center;margin-top:6px;line-height:1.6}
+.hv-sep{height:1px;background:rgba(255,255,255,0.07);margin:16px 0}
+.hv-row{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.hv-stat{background:rgba(232,93,4,0.07);border:1px solid rgba(232,93,4,0.15);border-radius:10px;padding:14px;text-align:center}
+.hv-sn{font-size:24px;font-weight:900;color:var(--tx);letter-spacing:-1px}
+.hv-sl{font-size:11px;color:var(--mu);margin-top:3px;line-height:1.4}
+.hv-float{position:absolute;top:-16px;right:24px;background:var(--o);color:#fff;font-size:11px;font-weight:700;padding:5px 14px;border-radius:20px}
+
+/* TICKER */
+.ticker{background:var(--o);padding:11px 0;overflow:hidden}
+.ticker-track{display:flex;white-space:nowrap;animation:tick 30s linear infinite}
+.ticker-item{font-size:12px;font-weight:700;color:#fff;letter-spacing:.08em;padding:0 40px;display:flex;align-items:center;gap:12px}
+.ticker-item::after{content:'🔥';font-size:13px}
+@keyframes tick{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+
+/* SECTIONS */
+section{padding:96px 6%}
+.si{max-width:1100px;margin:0 auto}
+.stag{font-size:11px;font-weight:700;color:var(--o);letter-spacing:.14em;text-transform:uppercase;margin-bottom:14px;display:flex;align-items:center;gap:10px}
+.stag::after{content:'';flex:1;max-width:40px;height:1px;background:var(--o);opacity:.5}
+.sh{font-size:clamp(26px,3.8vw,44px);font-weight:900;line-height:1.1;letter-spacing:-0.025em;margin-bottom:16px}
+.sp{font-size:16px;color:var(--mu);max-width:520px;line-height:1.8}
+
+/* PAIN */
+.pain{background:var(--d1)}
+.pain-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;margin-top:52px;background:rgba(255,255,255,0.06);border-radius:16px;overflow:hidden}
+.pain-card{background:var(--d1);padding:36px 28px;position:relative;transition:background .3s}
+.pain-card:hover{background:var(--d2)}
+.pain-card::after{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--o),transparent);transform:scaleX(0);transition:transform .4s}
+.pain-card:hover::after{transform:scaleX(1)}
+.pain-icon{width:56px;height:56px;border-radius:14px;background:rgba(232,93,4,0.12);border:1px solid rgba(232,93,4,0.25);display:flex;align-items:center;justify-content:center;font-size:26px;margin-bottom:20px}
+.pain-n{font-size:10px;font-weight:700;color:rgba(232,93,4,0.6);letter-spacing:.1em;margin-bottom:10px}
+.pain-t{font-size:18px;font-weight:800;margin-bottom:12px}
+.pain-p{font-size:13px;color:var(--mu);line-height:1.75}
+
+/* PRODUCTS */
+.pg{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:52px}
+.pc{background:var(--d1);border:1px solid rgba(255,255,255,0.08);border-radius:14px;overflow:hidden;transition:all .3s;display:flex;flex-direction:column}
+.pc:hover{border-color:rgba(232,93,4,0.5);transform:translateY(-4px);box-shadow:0 16px 48px rgba(0,0,0,0.4)}
+
+/* 圖片區 - 亮底 */
+.pi{height:240px;background:#efefef;display:flex;align-items:center;justify-content:center;overflow:hidden;position:relative;flex-shrink:0;cursor:zoom-in}
+.pi img{width:100%;height:100%;object-fit:contain;padding:16px;transition:transform .5s;background:#efefef;display:block}
+.pc:hover .pi img{transform:scale(1.04)}
+.pi-slides{width:100%;height:100%;position:relative;overflow:hidden}
+.pi-slide{position:absolute;inset:0;opacity:0;transition:opacity .8s;display:flex;align-items:center;justify-content:center;background:#efefef}
+.pi-slide img{width:100%;height:100%;object-fit:contain;padding:16px}
+.pi-slide.active{opacity:1}
+
+/* zoom hint */
+.pi::after{content:'🔍';position:absolute;bottom:8px;right:10px;font-size:16px;opacity:0;transition:opacity .3s}
+.pc:hover .pi::after{opacity:.5}
+
+/* 標籤 */
+.ptag{position:absolute;top:10px;left:10px;background:var(--o);color:#fff;font-size:10px;font-weight:800;padding:4px 10px;border-radius:4px;z-index:4;letter-spacing:.05em}
+.pprice{position:absolute;top:10px;right:10px;background:rgba(20,20,20,0.82);backdrop-filter:blur(4px);border:1px solid rgba(232,93,4,0.4);color:var(--o);font-size:11px;font-weight:800;padding:3px 10px;border-radius:4px;z-index:4}
+
+/* 文字區 */
+.pb{padding:16px 18px 18px;border-top:2px solid rgba(232,93,4,0.12);display:flex;flex-direction:column;gap:7px;flex:1}
+.pb .pn{font-size:15px;font-weight:900;color:var(--tx);line-height:1.3;letter-spacing:-0.01em}
+.pb .pd{font-size:12px;color:var(--mu);line-height:1.7}
+.pfs{display:flex;flex-direction:column;gap:5px;margin-top:6px;padding-top:8px;border-top:1px solid rgba(255,255,255,0.06)}
+.pf{display:flex;align-items:center;gap:7px;font-size:11px;color:rgba(240,237,232,0.5);line-height:1.5}
+.pf-dot{width:4px;height:4px;border-radius:50%;background:var(--o);flex-shrink:0}
+.pcerts{display:flex;flex-wrap:wrap;gap:4px;margin-top:8px}
+.cert-badge{font-size:9.5px;font-weight:700;color:var(--o);background:rgba(232,93,4,0.08);border:1px solid rgba(232,93,4,0.18);padding:2px 7px;border-radius:3px}
+
+/* LIGHTBOX */
+.lb{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.92);z-index:1000;align-items:center;justify-content:center;cursor:zoom-out}
+.lb.open{display:flex}
+.lb img{max-width:90vw;max-height:88vh;object-fit:contain;border-radius:8px;box-shadow:0 24px 80px rgba(0,0,0,0.8)}
+.lb-close{position:absolute;top:20px;right:28px;color:#fff;font-size:32px;cursor:pointer;line-height:1;opacity:.7;transition:opacity .2s}
+.lb-close:hover{opacity:1}
+
+/* CERTS */
+.cert-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin-top:52px}
+.cert-card{background:var(--d1);border:1px solid rgba(255,255,255,0.08);border-radius:14px;padding:24px;display:flex;gap:16px;align-items:flex-start;transition:border-color .3s}
+.cert-card:hover{border-color:rgba(232,93,4,0.3)}
+.cert-ico2{width:52px;height:52px;border-radius:12px;background:rgba(232,93,4,0.1);display:flex;align-items:center;justify-content:center;font-size:24px;flex-shrink:0}
+.cert-body h4{font-size:14px;font-weight:800;margin-bottom:5px}
+.cert-body p{font-size:12px;color:var(--mu);line-height:1.6}
+.cert-pass{display:inline-block;font-size:10px;font-weight:700;color:#00C800;background:rgba(0,200,0,0.08);border:1px solid rgba(0,200,0,0.2);padding:2px 8px;border-radius:4px;margin-top:6px}
+.cert-card.has-img{padding:0;overflow:hidden;flex-direction:column}
+.cert-card.has-img img{width:100%;height:200px;object-fit:cover;object-position:top}
+.cert-card.has-img .cert-body{padding:16px 20px 20px}
+
+/* WHY */
+.why{background:var(--d1)}
+.wg{display:grid;grid-template-columns:1fr 1fr;gap:72px;align-items:center;margin-top:52px}
+.wi{display:flex;flex-direction:column}
+.witem{display:flex;gap:20px;padding:22px 0;border-bottom:1px solid rgba(255,255,255,0.06);transition:padding .2s}
+.witem:first-child{padding-top:0}
+.witem:last-child{border-bottom:none;padding-bottom:0}
+.witem:hover{padding-left:8px}
+.wn{width:40px;height:40px;border-radius:10px;border:1px solid rgba(232,93,4,0.3);display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:900;color:var(--o);flex-shrink:0}
+.wtx h4{font-size:15px;font-weight:800;margin-bottom:5px}
+.wtx p{font-size:13px;color:var(--mu);line-height:1.7}
+.wv{display:flex;flex-direction:column;gap:12px}
+.wc{background:var(--d2);border:1px solid rgba(255,255,255,0.07);border-radius:12px;padding:18px 20px;display:flex;align-items:center;gap:14px;transition:border-color .3s}
+.wc:hover{border-color:rgba(232,93,4,0.3)}
+.wi2{width:44px;height:44px;border-radius:10px;background:var(--ob);display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0}
+.wci h5{font-size:13px;font-weight:700;margin-bottom:3px}
+.wci p{font-size:12px;color:var(--mu);line-height:1.5}
+
+/* CONTACT */
+.contact{background:var(--bk);position:relative}
+.contact::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(232,93,4,0.5),transparent)}
+.cg{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:start;margin-top:52px}
+.cinfo{display:flex;flex-direction:column;gap:12px}
+.citem{display:flex;align-items:center;gap:16px;padding:18px 20px;background:var(--d1);border:1px solid rgba(255,255,255,0.07);border-radius:12px;transition:border-color .3s}
+.citem:hover{border-color:rgba(232,93,4,0.3)}
+.cico{width:46px;height:46px;border-radius:10px;background:var(--ob);display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0}
+.cd h4{font-size:10px;font-weight:700;color:var(--mu);letter-spacing:.06em;text-transform:uppercase;margin-bottom:4px}
+.cd a,.cd span{font-size:15px;font-weight:800;color:var(--tx);text-decoration:none}
+.cd a:hover{color:var(--o)}
+.cform{background:var(--d1);border:1px solid rgba(255,255,255,0.07);border-radius:20px;padding:32px;position:relative;overflow:hidden}
+.cform::before{content:'';position:absolute;top:-60px;right:-60px;width:200px;height:200px;background:radial-gradient(circle,rgba(232,93,4,0.08),transparent 70%);pointer-events:none}
+.cftitle{font-size:20px;font-weight:900;margin-bottom:24px}
+.fr{margin-bottom:14px}
+.fr label{display:block;font-size:10px;font-weight:700;color:var(--mu);letter-spacing:.08em;text-transform:uppercase;margin-bottom:7px}
+.fr input,.fr textarea,.fr select{width:100%;background:var(--bk);border:1px solid rgba(255,255,255,0.1);border-radius:8px;padding:12px 14px;color:var(--tx);font-size:14px;font-family:inherit;outline:none;transition:border-color .2s}
+.fr input:focus,.fr textarea:focus,.fr select:focus{border-color:var(--o)}
+.fr textarea{height:80px;resize:vertical}
+.fr select option{background:var(--d2)}
+.fsub{width:100%;background:var(--o);color:#fff;border:none;padding:15px;border-radius:10px;font-size:15px;font-weight:800;cursor:pointer;font-family:inherit;transition:all .2s}
+.fsub:hover{background:var(--od);transform:translateY(-1px);box-shadow:0 8px 24px rgba(232,93,4,0.4)}
+
+/* FLOAT */
+.lf{position:fixed;bottom:28px;right:28px;z-index:300;display:flex;flex-direction:column;align-items:flex-end;gap:8px}
+.lf-btn{background:#00B900;color:#fff;border-radius:50px;padding:13px 20px;display:flex;align-items:center;gap:8px;text-decoration:none;font-size:14px;font-weight:700;box-shadow:0 8px 24px rgba(0,185,0,0.4);transition:all .2s}
+.lf-btn:hover{transform:translateY(-3px)}
+.lf-tel{background:var(--d2);border:1px solid rgba(255,255,255,0.1);color:var(--tx);border-radius:50px;padding:11px 18px;display:flex;align-items:center;gap:8px;text-decoration:none;font-size:13px;font-weight:700;transition:all .2s}
+.lf-tel:hover{border-color:var(--o);color:var(--o);transform:translateY(-2px)}
+
+footer{background:var(--d1);border-top:1px solid rgba(255,255,255,0.06);padding:36px 6%;text-align:center}
+footer p{font-size:13px;color:var(--mu)}
+footer strong{color:var(--o)}
+
+@media(max-width:900px){
+  .hi,.wg,.cg{grid-template-columns:1fr}
+  .hv-main{display:none}
+  .pain-grid,.pg,.cert-grid{grid-template-columns:1fr}
+  nav ul{display:none}
+}
+</style>
+</head>
+<body>
+
+<!-- LIGHTBOX -->
+<div class="lb" id="lb" onclick="closeLB()">
+  <span class="lb-close" onclick="closeLB()">✕</span>
+  <img id="lb-img" src="" alt="">
+</div>
+
+<nav>
+  <div class="ni">
+    <a href="#" class="logo">
+      <div class="li">中保<br>防災</div>
+      <div><div class="lt">中保防災科技</div><div class="ls">鋰電池防災專家</div></div>
+    </a>
+    <ul>
+      <li><a href="#products">產品</a></li>
+      <li><a href="#certs">認證</a></li>
+      <li><a href="#why">優勢</a></li>
+      <li><a href="#contact">聯繫資訊</a></li>
+      <li><a href="tel:0910926772" class="nc">📞 立即來電</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hbg"><div class="hbg-orb1"></div><div class="hbg-orb2"></div><div class="hbg-line"></div></div>
+  <div class="hi">
+    <div>
+      <div class="hbadge"><span class="hdot"></span>台灣首創租賃型電動車防火毯</div>
+      <h1>鋰電池著火，<br>你準備好了嗎？</h1>
+      <div class="h1-sub">中保為你守護</div>
+      <p class="hdesc">電動車、機車、行動電源——鋰電池無所不在。中保防災科技提供台灣最完整的鋰電池防護方案，從居家到企業全面保障。</p>
+      <div class="hbtns">
+        <a href="#contact" class="bp">填寫需求表單 →</a>
+        <a href="#products" class="bs">查看產品</a>
+      </div>
+    </div>
+    <div style="position:relative">
+      <div class="hv-float">🔥 台灣火災數據</div>
+      <div class="hv-main">
+        <div class="hv-glow"></div>
+        <div class="hv-label">每隔多久發生一次火災</div>
+        <div class="hv-big">
+          <div class="hv-num">35<span class="hv-unit">分</span></div>
+          <div class="hv-desc">2022年台灣 15,000 多起火災<br>平均每 35 分鐘就有一場</div>
+        </div>
+        <div class="hv-sep"></div>
+        <div class="hv-row">
+          <div class="hv-stat"><div class="hv-sn">152</div><div class="hv-sl">每年因火災<br>破碎的家庭</div></div>
+          <div class="hv-stat"><div class="hv-sn">24H</div><div class="hv-sl">中保保全<br>全天候連線</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TICKER -->
+<div class="ticker">
+  <div class="ticker-track">
+    <span class="ticker-item">電動車防火毯・耐溫超過 1200°C 持續 2 小時</span>
+    <span class="ticker-item">鋰離子電池滅火器・SGS 通過 90°C 耐熱測試</span>
+    <span class="ticker-item">防焰束口袋・CNS10285 防焰一級</span>
+    <span class="ticker-item">鋰電池救災包・火速應急安全隨手提</span>
+    <span class="ticker-item">防火毯・已投保 1000 萬產品責任險</span>
+    <span class="ticker-item">中興保全集團旗下・40 年品牌信賴</span>
+    <span class="ticker-item">電動車防火毯・耐溫超過 1200°C 持續 2 小時</span>
+    <span class="ticker-item">鋰離子電池滅火器・SGS 通過 90°C 耐熱測試</span>
+    <span class="ticker-item">防焰束口袋・CNS10285 防焰一級</span>
+    <span class="ticker-item">鋰電池救災包・火速應急安全隨手提</span>
+    <span class="ticker-item">防火毯・已投保 1000 萬產品責任險</span>
+    <span class="ticker-item">中興保全集團旗下・40 年品牌信賴</span>
+  </div>
+</div>
+
+<!-- PAIN -->
+<section class="pain" id="pain">
+  <div class="si">
+    <div class="stag">為什麼需要防災</div>
+    <h2 class="sh">鋰電池火災，比你想的<br>更危險、更難撲滅</h2>
+    <p class="sp">熱失控瞬間超過 700°C，一般滅火器根本無效。了解風險，才能真正保護自己。</p>
+    <div class="pain-grid">
+      <div class="pain-card">
+        <div class="pain-icon">⚡</div>
+        <div class="pain-n">RISK 01</div>
+        <div class="pain-t">熱失控，難以撲滅</div>
+        <div class="pain-p">鋰電池著火溫度瞬間超過 700°C，需要專用防火材料隔絕氧氣、阻止延燒，普通滅火器無法有效應對。</div>
+      </div>
+      <div class="pain-card">
+        <div class="pain-icon">🏢</div>
+        <div class="pain-n">RISK 02</div>
+        <div class="pain-t">密閉停車場風險最高</div>
+        <div class="pain-p">電動車停放地下室，一旦起火濃煙高溫極難疏散，是目前百貨、醫院、車廠最棘手的防災議題。</div>
+      </div>
+      <div class="pain-card">
+        <div class="pain-icon">📦</div>
+        <div class="pain-n">RISK 03</div>
+        <div class="pain-t">日常用品也有隱患</div>
+        <div class="pain-p">行動電源、筆電、電動自行車電池，若儲存不當或過充，同樣可能引發火災，家庭防護不可輕忽。</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRODUCTS -->
+<section id="products" style="background:var(--bk)">
+  <div class="si">
+    <div class="stag">產品介紹</div>
+    <h2 class="sh">全方位鋰電池防災產品</h2>
+    <p class="sp">從大型場域到日常隨身，點擊圖片可放大查看。</p>
+    <div class="pg">
+
+      <div class="pc">
+        <div class="pi" onclick="openLB(this)">
+          <div class="pi-slides" id="blanket-slides">
+            <div class="pi-slide active"><img src="" id="blanket-img1" alt="電動車防火毯"></div>
+            <div class="pi-slide"><img src="" id="blanket-img2" alt="電動車防火毯機櫃"></div>
+          </div>
+          <div class="ptag">★ 主打商品</div>
+          <div class="pprice">來電詢價</div>
+        </div>
+        <div class="pb">
+          <div class="pn">電動車／鋰電池防火毯</div>
+          <div class="pd">台灣首創租賃型，耐熱 >1200°C 持續 2 小時，24H 保全連線，租期內無限次免費換新</div>
+          <div class="pfs">
+            <div class="pf"><div class="pf-dot"></div>尺寸：2×2 / 6×4 / 9×6 / 10×8M</div>
+            <div class="pf"><div class="pf-dot"></div>落地機櫃、失竊免責、即時監控</div>
+          </div>
+          <div class="pcerts">
+            <span class="cert-badge">KIWA DIN SPEC 91489</span>
+            <span class="cert-badge">SGS CNS 10285 防焰1級</span>
+            <span class="cert-badge">歐盟 EN13501-1 A2</span>
+            <span class="cert-badge">1000萬責任險</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="pc">
+        <div class="pi" onclick="openLB(this)">
+          <img src="" id="extinguisher-img" alt="鋰離子電池滅火器">
+          <div class="pprice">$2,590</div>
+        </div>
+        <div class="pb">
+          <div class="pn">鋰離子電池滅火器</div>
+          <div class="pd">居家安全第一道防線，隨按即噴，30 秒持續噴射，已投保 6,400 萬責任險</div>
+          <div class="pfs">
+            <div class="pf"><div class="pf-dot"></div>適用 A/B/C/F 類及鋰電池火災</div>
+            <div class="pf"><div class="pf-dot"></div>耐高溫 90°C，放車內安心</div>
+          </div>
+          <div class="pcerts">
+            <span class="cert-badge">SGS 90°C耐熱</span>
+            <span class="cert-badge">SGS 藥劑無氟</span>
+            <span class="cert-badge">CNS10978</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="pc">
+        <div class="pi" onclick="openLB(this)">
+          <div class="pi-slides" id="bag-slides">
+            <div class="pi-slide active"><img src="" id="bag-img1" alt="鋰電池救災包1"></div>
+            <div class="pi-slide"><img src="" id="bag-img2" alt="鋰電池救災包2"></div>
+            <div class="pi-slide"><img src="" id="bag-img3" alt="鋰電池救災包3"></div>
+            <div class="pi-slide"><img src="" id="bag-img4" alt="鋰電池救災包4"></div>
+          </div>
+          <div class="pprice">基礎款 $1,990</div>
+        </div>
+        <div class="pb">
+          <div class="pn">鋰電池救災包</div>
+          <div class="pd">PU防水袋＋滅火毯＋隔熱手套＋瓶裝水，火速應急安全隨手提</div>
+          <div class="pfs">
+            <div class="pf"><div class="pf-dot"></div>滅火毯 MIT 台灣製，防焰一級</div>
+            <div class="pf"><div class="pf-dot"></div>效期 20 年，可升級進階款</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="pc">
+        <div class="pi" onclick="openLB(this)">
+          <div class="pi-slides" id="pouch-slides">
+            <div class="pi-slide active"><img src="" id="pouch-img1" alt="防焰束口袋軍綠"></div>
+            <div class="pi-slide"><img src="" id="pouch-img2" alt="防焰束口袋場景"></div>
+            <div class="pi-slide"><img src="" id="pouch-img3" alt="防焰束口袋辦公"></div>
+            <div class="pi-slide"><img src="" id="pouch-img4" alt="防焰束口袋深藍"></div>
+            <div class="pi-slide"><img src="" id="pouch-img5" alt="防焰束口袋天藍"></div>
+            <div class="pi-slide"><img src="" id="pouch-img6" alt="防焰束口袋沙色"></div>
+          </div>
+          <div class="ptag">中保 × Avier 聯名</div>
+          <div class="pprice">$890</div>
+        </div>
+        <div class="pb">
+          <div class="pn">雙層防焰束口袋</div>
+          <div class="pd">台灣首款複合材料防火袋，三層結構，多色可選，時尚又安全</div>
+          <div class="pfs">
+            <div class="pf"><div class="pf-dot"></div>耐溫 500~1200°C，阻隔初始火苗</div>
+            <div class="pf"><div class="pf-dot"></div>22×13cm，可放手機、行動電源</div>
+          </div>
+          <div class="pcerts">
+            <span class="cert-badge">CNS10285 防焰1級</span>
+            <span class="cert-badge">1000萬責任險</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="pc">
+        <div class="pi" onclick="openLB(this)">
+          <img src="" id="powerbank-img" alt="行動電源防火袋">
+          <div class="pprice">$399</div>
+        </div>
+        <div class="pb">
+          <div class="pn">行動電源防火袋</div>
+          <div class="pd">簡易便利好收納，19×13cm，阻隔初始火苗爭取應變時間</div>
+          <div class="pfs">
+            <div class="pf"><div class="pf-dot"></div>MIT 台灣製防火布</div>
+            <div class="pf"><div class="pf-dot"></div>1000萬產品責任險</div>
+          </div>
+          <div class="pcerts"><span class="cert-badge">CNS10285 防焰1級</span></div>
+        </div>
+      </div>
+
+      <div class="pc">
+        <div class="pi" onclick="openLB(this)">
+          <div class="pi-slides" id="shield-slides">
+            <div class="pi-slide active"><img src="" id="security-img1" alt="臂盾"></div>
+            <div class="pi-slide"><img src="" id="security-img2" alt="臂盾印刷版"></div>
+          </div>
+          <div class="ptag">個人安保</div>
+          <div class="pprice">來電詢價</div>
+        </div>
+        <div class="pb">
+          <div class="pn">防護臂盾</div>
+          <div class="pd">輕量化個人防護盾牌，高強度材質，適合保全、校園安全人員</div>
+          <div class="pfs">
+            <div class="pf"><div class="pf-dot"></div>輕量高強度材質</div>
+            <div class="pf"><div class="pf-dot"></div>適合保全、校園安全人員</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="pc">
+        <div class="pi" onclick="openLB(this)">
+          <div class="pi-slides" id="fork-slides">
+            <div class="pi-slide active"><img src="" id="security-img3" alt="防爆鋼叉"></div>
+            <div class="pi-slide"><img src="" id="security-img4" alt="鋼叉本體"></div>
+            <div class="pi-slide"><img src="" id="security-img5" alt="防爆鋼叉L3"></div>
+            <div class="pi-slide"><img src="" id="security-img6" alt="防爆鋼叉53"></div>
+          </div>
+          <div class="ptag">個人安保</div>
+          <div class="pprice">來電詢價</div>
+        </div>
+        <div class="pb">
+          <div class="pn">防爆鋼叉</div>
+          <div class="pd">低致命性壓制工具，月牙弧形自動鎖定，適合保全、執法單位</div>
+          <div class="pfs">
+            <div class="pf"><div class="pf-dot"></div>安全距離壓制，保護執勤人員</div>
+            <div class="pf"><div class="pf-dot"></div>高強度鋁合金，自動鎖定機制</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- CERTS -->
+<section style="background:var(--d1)" id="certs">
+  <div class="si">
+    <div class="stag">認證與檢驗</div>
+    <h2 class="sh">多項國際認證，<br>讓你放心又安心</h2>
+    <p class="sp">通過台灣、歐盟等多國檢驗，每項產品都有完整第三方認證背書。</p>
+    <div class="cert-grid">
+      <div class="cert-card has-img">
+        <img src="" id="cert-sgs-img" alt="SGS毒性檢測報告">
+        <div class="cert-body">
+          <h4>SGS 毒性及關注化學物質檢測</h4>
+          <p>滅火器藥劑通過 SGS 無毒性檢測，確保使用後環境與人體安全無虞。</p>
+          <span class="cert-pass">✓ 通過</span>
+        </div>
+      </div>
+      <div class="cert-card has-img">
+        <img src="" id="cert-insurance-img" alt="富邦產險保險證明">
+        <div class="cert-body">
+          <h4>富邦產險 6,400 萬產品責任險</h4>
+          <p>中保時尚滅火器已投保富邦產物保險，累計保險金額高達 6,400 萬，讓消費者用得安心。</p>
+          <span class="cert-pass">✓ 已投保</span>
+        </div>
+      </div>
+      <div class="cert-card">
+        <div class="cert-ico2">🇪🇺</div>
+        <div class="cert-body">
+          <h4>歐盟防火 EN13501-1：A2、S1、D0</h4>
+          <p>防火毯達歐盟最高耐燃級別，通過 KIWA DIN SPEC 91489 國際防火毯規範全項測試，SGS 耐燃 >1200°C 連續 120 分鐘。</p>
+          <span class="cert-pass">✓ 通過</span>
+        </div>
+      </div>
+      <div class="cert-card">
+        <div class="cert-ico2">🛡️</div>
+        <div class="cert-body">
+          <h4>CNS10285 防焰一級 / CNS10978</h4>
+          <p>防火收納袋及滅火器皆通過中華民國國家標準，並通過消防器材檢驗中心滅火測試及抗震測試。</p>
+          <span class="cert-pass">✓ 通過</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY -->
+<section class="why" id="why">
+  <div class="si">
+    <div class="stag">品牌優勢</div>
+    <h2 class="sh">為什麼選擇中保防災</h2>
+    <p class="sp">中興保全集團旗下子公司，40 年品牌信賴，台灣防災科技領導者。</p>
+    <div class="wg">
+      <div class="wi">
+        <div class="witem"><div class="wn">01</div><div class="wtx"><h4>台灣首創租賃型防火毯</h4><p>獨家租賃模式，租期內使用後無限次免費換新，搭配保全主機連線。</p></div></div>
+        <div class="witem"><div class="wn">02</div><div class="wtx"><h4>中興保全集團品牌背書</h4><p>隸屬台灣保全業第一品牌，40 年市場領導者，品質與服務有保障。</p></div></div>
+        <div class="witem"><div class="wn">03</div><div class="wtx"><h4>專業設置評估到完工驗收</h4><p>專人現場場勘、防火毯設置分析，並附完工報告與驗收資料。</p></div></div>
+        <div class="witem"><div class="wn">04</div><div class="wtx"><h4>教育訓練＋聯合演練支援</h4><p>提供企業專業教育訓練，附教育訓練用毯及操作車輛。</p></div></div>
+        <div class="witem"><div class="wn">05</div><div class="wtx"><h4>失竊免責、規格保證</h4><p>租賃方案含失竊免責險；並保證符合消防機關最新法規規格。</p></div></div>
+      </div>
+      <div class="wv">
+        <div class="wc"><div class="wi2">🏆</div><div class="wci"><h5>中興保全集團旗下子公司</h5><p>台灣保全業市場領導者，逾 40 年品牌</p></div></div>
+        <div class="wc"><div class="wi2">🚗</div><div class="wci"><h5>電動車防火毯台灣首創</h5><p>率先推出租賃型服務，引領市場標準</p></div></div>
+        <div class="wc"><div class="wi2">🔔</div><div class="wci"><h5>24H 保全系統連線</h5><p>4G 即時通報，異常立即通知緊急聯絡人</p></div></div>
+        <div class="wc"><div class="wi2">📋</div><div class="wci"><h5>多項國際認證</h5><p>SGS、歐盟、CNS、消防器材檢驗中心全通過</p></div></div>
+        <div class="wc"><div class="wi2">🌍</div><div class="wci"><h5>非中國製造原料證明</h5><p>防火毯原廠（西班牙）出具聲明，原料來自歐美韓</p></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <div class="si">
+    <div class="stag">聯繫資訊</div>
+    <h2 class="sh">需要防災諮詢？<br>我們馬上幫你</h2>
+    <p class="sp">填表單、加 LINE 或直接來電，最快當天回覆。</p>
+    <div class="cg">
+      <div class="cinfo">
+        <div class="citem"><div class="cico">👤</div><div class="cd"><h4>業務專員</h4><span>竇偉愷 Bean</span></div></div>
+        <div class="citem"><div class="cico">📞</div><div class="cd"><h4>業務直線</h4><a href="tel:0910926772">0910-926-772</a></div></div>
+        <div class="citem"><div class="cico" style="background:rgba(0,185,0,0.1)">💬</div><div class="cd"><h4>LINE 加我詢問</h4><a href="https://line.me/ti/p/bean718" target="_blank" style="color:#00C800">@bean718</a></div></div>
+        <div class="citem"><div class="cico">🏢</div><div class="cd"><h4>公司總機</h4><a href="tel:0277469919">02-7746-9919 #306</a></div></div>
+        <div class="citem"><div class="cico">📍</div><div class="cd"><h4>公司地址</h4><span style="font-size:13px">台北市南港區經貿二路 135 號 10 樓 F 棟</span></div></div>
+        <div class="citem"><div class="cico">🕐</div><div class="cd"><h4>服務時間</h4><span style="font-size:13px">週一至週五 09:00–18:00</span></div></div>
+      </div>
+      <div class="cform">
+        <div class="cftitle">填寫需求表單</div>
+        <div class="fr"><label>姓名 / 公司名稱</label><input type="text" placeholder="請輸入您的姓名或公司"></div>
+        <div class="fr"><label>聯絡電話</label><input type="tel" placeholder="請輸入您的電話號碼"></div>
+        <div class="fr"><label>感興趣的產品</label>
+          <select>
+            <option value="">請選擇產品</option>
+            <option>電動車防火毯（租賃方案）</option>
+            <option>電動車防火毯（買斷方案）</option>
+            <option>電動機車／鋰電池防火毯</option>
+            <option>鋰離子電池滅火器 $2,590</option>
+            <option>鋰電池救災包 $1,990</option>
+            <option>行動電源防火袋 $399</option>
+            <option>雙層防焰束口袋 $890</option>
+            <option>防護臂盾</option>
+            <option>防爆鋼叉</option>
+            <option>多項產品諮詢</option>
+          </select>
+        </div>
+        <div class="fr"><label>需求說明（選填）</label><textarea placeholder="例如：地下停車場約 50 個車位，想了解防火毯租賃方案…"></textarea></div>
+        <button class="fsub" onclick="alert('感謝您的詢問！我們將盡快與您聯繫。')">送出需求 →</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p><strong>中保防災科技股份有限公司</strong>｜台北市南港區經貿二路 135 號 10 樓 F 棟｜02-7746-9919 #306</p>
+  <p style="margin-top:8px;font-size:12px">中興保全集團旗下子公司 · © 2025 版權所有 · 業務聯繫：竇偉愷 Bean 0910-926-772</p>
+</footer>
+
+<div class="lf">
+  <a href="https://line.me/ti/p/bean718" class="lf-btn" target="_blank">
+    <svg width="20" height="20" viewBox="0 0 48 48"><path d="M40 22.3C40 15.5 33.2 10 24 10S8 15.5 8 22.3c0 6.1 5.4 11.2 12.7 12.2.5.1 1.2.3 1.4.8.2.4.1 1 0 1.4l-.2 1.4c-.1.4-.3 1.6 1.4.9 1.7-.8 9.2-5.4 12.5-9.3A11 11 0 0040 22.3z" fill="#fff"/></svg>
+    LINE 加我詢問
+  </a>
+  <a href="tel:0910926772" class="lf-tel">📞 0910-926-772</a>
+</div>
+
+<script>
+const base='https://raw.githubusercontent.com/BlackBean1/-/main/';
+function gimg(f){
+  // 只編碼中文和空格，保留連字號
+  return base+f.split('').map(c=>/[\u4e00-\u9fff\s\(\)]/.test(c)?encodeURIComponent(c):c).join('');
+}
+
+const imgFiles={
+  'blanket-img1':'防水袋png1.png',
+  'blanket-img2':'防火袋png2.png',
+  'extinguisher-img':'鋰電池滅火器主圖.jpg',
+  'bag-img1':'救災包組合1.jpg',
+  'bag-img2':'救災包組合2.jpg',
+  'bag-img3':'救災包組合3.jpg',
+  'bag-img4':'救災包組合4.jpg',
+  'pouch-img1':'森林綠png.png',
+  'pouch-img2':'森林綠1220x715px (1).png',
+  'pouch-img3':'柔沙杏手機(雛紐2000x2000) (1).png',
+  'pouch-img4':'深海藍.png',
+  'pouch-img5':'晨空藍png.png',
+  'pouch-img6':'柔沙杏.png',
+  'powerbank-img':'防火袋png2 (1).png',
+  'cert-sgs-img':'SGS無氟檢測.jpg',
+  'cert-insurance-img':'2026責任險保單.jpg',
+  'security-img1':'臂盾10.jpg',
+  'security-img2':'臂盾印刷版png.png',
+  'security-img3':'鋼叉大.png',
+  'security-img4':'鋼叉本體.png',
+  'security-img5':'防爆鋼叉L3.jpg',
+  'security-img6':'防爆鋼叉53.jpg',
+};
+
+Object.entries(imgFiles).forEach(([id,f])=>{
+  const el=document.getElementById(id);
+  if(el){el.src=gimg(f);el.onerror=()=>{el.style.opacity='0.3'}}
+});
+
+// Lightbox
+function openLB(pi){
+  const img=pi.querySelector('img');
+  if(!img||!img.src)return;
+  document.getElementById('lb-img').src=img.src;
+  document.getElementById('lb').classList.add('open');
+  document.body.style.overflow='hidden';
+}
+function closeLB(){
+  document.getElementById('lb').classList.remove('open');
+  document.body.style.overflow='';
+}
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLB()});
+
+// 輪播
+function startSlideshow(id,ms){
+  const c=document.getElementById(id);
+  if(!c)return;
+  const slides=c.querySelectorAll('.pi-slide');
+  if(slides.length<2)return;
+  let cur=0;
+  setInterval(()=>{
+    slides[cur].classList.remove('active');
+    cur=(cur+1)%slides.length;
+    slides[cur].classList.add('active');
+  },ms);
+}
+startSlideshow('blanket-slides',3000);
+startSlideshow('bag-slides',2500);
+startSlideshow('pouch-slides',2200);
+startSlideshow('shield-slides',3000);
+startSlideshow('fork-slides',2200);
+</script>
+</body>
+</html>
